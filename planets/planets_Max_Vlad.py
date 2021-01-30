@@ -1,0 +1,141 @@
+import turtle
+
+# def get_mouse_click_coor(x, y):
+#     print(x, y)
+# turtle.onscreenclick(get_mouse_click_coor)
+# turtle.mainloop()
+
+
+t = turtle.Pen()
+t.speed(6)
+wn = turtle.Screen()
+wn.bgcolor('black')
+# Sun
+t.up()
+t.goto(-300, 50)
+t.down()
+t.color('gold')
+t.begin_fill()
+t.circle(250)
+t.end_fill()
+# Mercury
+t.up()
+t.goto(-200, 0)
+t.color('slategray')
+t.down()
+t.begin_fill()
+t.circle(15)
+t.end_fill()
+# Venus
+t.up()
+t.goto(-100, 10)
+t.begin_fill()
+t.color('tan')
+t.circle(35)
+t.end_fill()
+# Earth
+t.goto(0, 50)
+t.color('cornflowerblue')
+t.begin_fill()
+t.circle(40)
+t.end_fill()
+# Moon
+t.goto(60, 80)
+t.color('lightgray')
+t.begin_fill()
+t.circle(10)
+t.end_fill()
+# Mars
+t.goto(-70, -70)
+t.color('orangered')
+t.begin_fill()
+t.circle(25)
+t.end_fill()
+# Phobos
+t.goto(-50, -20)
+t.dot(5, '#783206')
+# Deimos
+t.goto(-100, -70)
+t.dot(6, '#d5eef0')
+# Jupiter
+t.goto(-290, -218)
+t.color('burlywood')
+t.begin_fill()
+t.circle(80)
+t.end_fill()
+# Ganymede
+t.goto(-320, -160)
+t.color('#A4A4A4')
+t.begin_fill()
+t.circle(20)
+t.end_fill()
+# Io
+t.goto(-380, -150)
+t.color('#FFFF00')
+t.begin_fill()
+t.circle(10)
+t.end_fill()
+# Europa
+t.goto(-200, -150)
+t.begin_fill()
+t.color('lemonchiffon')
+t.begin_fill()
+t.circle(8)
+t.end_fill()
+# Callisto
+t.goto(-260, -155)
+t.begin_fill()
+t.color('mediumblue')
+t.circle(15)
+t.end_fill()
+# Saturn circle 1
+t.pensize(10)
+t.goto(230, 150)
+t.down()
+t.color('mediumturquoise')
+t.circle(150)
+t.up()
+# Saturn circle 2
+t.goto(230,160)
+t.color('mediumblue')
+t.down()
+t.circle(140)
+t.up()
+# Saturn circle 3
+t.goto(230, 170)
+t.color('paleturquoise')
+t.down()
+t.circle(130)
+# Saturn
+t.up()
+t.goto(230, 230)
+t.begin_fill()
+t.color('goldenrod')
+t.circle(70)
+t.end_fill()
+# Titan
+t.up()
+t.goto(430, 280)
+t.begin_fill()
+t.color('#e1e810')
+t.circle(20)
+t.end_fill()
+#Uranus
+t.up()
+t.goto(-6, -217)
+t.begin_fill()
+t.color('#2ECCFA')
+t.circle(60)
+t.end_fill()
+# Neptune
+t.goto(277, -41)
+t.begin_fill()
+t.color('#8258FA')
+t.circle(60)
+t.end_fill()
+
+def get_mouse_click_coor(x, y):
+    print(x, y)
+turtle.onscreenclick(get_mouse_click_coor)
+turtle.mainloop()
+turtle.done()
