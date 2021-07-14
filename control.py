@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+from math import *
 from caclulator_Maksim_Derkach import Ui_Calculator
 app = QtWidgets.QApplication(sys.argv)
 Calculator = QtWidgets.QDialog()
@@ -15,7 +16,20 @@ def action_minus():
     ui.label_output.setText(text + "-")
 def action_equals():
     text = ui.label_output.text()
-    ui.label_output.setText(text + "=")
+    ans = eval(text, {'sqrt': sqrt})
+    ui.label_output.setText(str(ans))
+def action_bracket_left():
+    text = ui.label_output.text()
+    ui.label_output.setText(text + "(")
+def action_bracket_right():
+    text = ui.label_output.text()
+    ui.label_output.setText(text + ")")
+def action_percentage():
+    text = ui.label_output.text()
+    ui.label_output.setText(text + "%")
+def action_dot():
+    text = ui.label_output.text()
+    ui.label_output.setText(text + ".")
 def action_divide():
     text = ui.label_output.text()
     ui.label_output.setText(text + "/")
@@ -57,6 +71,10 @@ ui.pushButton_minus.clicked.connect(action_minus)
 ui.pushButton_equals.clicked.connect(action_equals)
 ui.pushButton_divided.clicked.connect(action_divide)
 ui.pushButton_multiply.clicked.connect(action_multiply)
+ui.pushButton_procent.clicked.connect(action_percentage)
+ui.pushButton_bracket_left.clicked.connect(action_bracket_left)
+ui.pushButton_bracket_right.clicked.connect(action_bracket_right)
+ui.pushButton_dot.clicked.connect(action_dot)
 ui.pushButton_one.clicked.connect(pushbutton_one)
 ui.pushButton_two.clicked.connect(pushbutton_two)
 ui.pushButton_three.clicked.connect(pushbutton_three)

@@ -12,6 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Calculator(object):
+    def __init__(self):
+            self.pushButton_protsent = None
+
     def setupUi(self, Calculator):
         Calculator.setObjectName("Calculator")
         Calculator.resize(662, 400)
@@ -981,10 +984,10 @@ class Ui_Calculator(object):
     def retranslateUi(self, Calculator):
         _translate = QtCore.QCoreApplication.translate
         Calculator.setWindowTitle(_translate("Calculator", "Dialog"))
-        self.label_output.setText(_translate("Calculator", "0"))
+        self.label_output.setText(_translate("Calculator", ""))
         self.pushButton_three.setText(_translate("Calculator", "3"))
         self.pushButton_cos.setText(_translate("Calculator", "cos"))
-        self.pushButton_procent.setText(_translate("Calculator", "%"))
+        self.setText(_translate("Calculator", "%"))
         self.pushButton_two.setText(_translate("Calculator", "2"))
         self.pushButton_six.setText(_translate("Calculator", "6"))
         self.pushButton_dot.setText(_translate("Calculator", "."))
