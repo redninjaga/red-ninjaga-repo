@@ -2,7 +2,6 @@ import pygame, sys, controls
 from gun import Gun
 # import controls
 from pygame.sprite import Group
-# from ino import Ino
 # from stats import Stats
 
 def run():
@@ -13,16 +12,16 @@ def run():
     bg_color = (0, 0, 0)
     gun = Gun(screen)
     bullets = Group()
-    # inos = Ino(screen)
+    inos = Group()
+    controls.create_army(screen, inos)
     # controls.create_army(screen, inos)
     # stats = Stats()
 
     while True:
         controls.events(screen, gun, bullets)
         gun.update_gun()
-        bullets.update()
-        controls.update(bg_color, screen, gun, bullets)
-        # controls.update_bullets(screen, inos, bullets)
-        # controls.update_inos(stats, screen, gun, inos, bullets  )
+        controls.update(bg_color, screen, gun, inos, bullets)
+        controls.update_bullets(bullets)
+        controls.update_inos(inos)
 
 run()
