@@ -1,7 +1,8 @@
 from turtle import *
-from random import randint
+from random import ran
+speed(0)
 
-n = 3
+n = 15
 l = 200
 
 x = (n - 1) * 10
@@ -89,7 +90,7 @@ print("Второе место: " + result[1])
 print("Третия место: " + result[2])
 print("Четвёртае  место: " + result[3])
 print("Лузэр: " + result[4])
-
+print(result)
 '''
 turtles = [red, blue, yellow, green, black]
 for i in range (len(turtles)):
