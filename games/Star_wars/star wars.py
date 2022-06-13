@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, controls
 from gun import Gun
 # import controls
 # from pygame.sprite import Group
@@ -18,15 +18,11 @@ def run():
     # stats = Stats()
 
     while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
         screen.fill(bg_color)
         gun.output()
         pygame.display.flip()
-        # controls.event(screen, gun, bullets)
-        # gun.update_gun()
+        controls.events(gun)
+        gun.update_gun()
         # bullets.update()
         # controls.update(bg_color, screen, gun, inos, bullets)
         # controls.update_bullets(screen, inos, bullets)
