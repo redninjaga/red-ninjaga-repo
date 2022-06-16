@@ -1,6 +1,8 @@
-input_number = int(input("Введите число"))
+number = 1
+kratnoe:int = 0
 
-last_number = int(input_number % 10)
-two_number = int(input_number / 10)
-result = int(last_number * 100 + two_number)
-print(result)
+while number != 21:
+    kratnoe = number % 3
+    if kratnoe == 0:
+        print(number, "число кратное трём")
+    number = int(number + 1)

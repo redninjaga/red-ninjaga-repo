@@ -1,5 +1,5 @@
 from turtle import *
-from random import ran
+from random import randint
 speed(0)
 
 n = 15

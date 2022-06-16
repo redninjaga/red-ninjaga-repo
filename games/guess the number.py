@@ -1,7 +1,7 @@
 import random
 import os
 q = True
-while q :
+while q:
 	x1 = 1
 	x2 = 100
 	menu = '''
