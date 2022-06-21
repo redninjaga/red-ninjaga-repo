@@ -3,6 +3,7 @@ from gun import Gun
 # import controls
 from pygame.sprite import Group
 from stats import Stats
+from scores import Scores
 
 def run():
 
@@ -15,12 +16,16 @@ def run():
     inos = Group()
     controls.create_army(screen, inos)
     stats = Stats()
+    clock = pygame.time.Clock()
+    sc = Scores(screen, stats)
 
     while True:
         controls.events(screen, gun, bullets)
-        gun.update_gun()
-        controls.update(bg_color, screen, gun, inos, bullets)
-        controls.update_bullets(inos, bullets)
-        controls.update_inos(stats, screen, gun, inos, bullets)
-
+        if stats.run_game:
+            gun.update_gun()
+            controls.update(bg_color, screen, stats, sc, gun, inos, bullets)
+            controls.update_bullets(screen, inos, sc, bullets, stats)
+            controls.update_inos(stats, screen, sc, gun, inos, bullets)
+            clock.tick()
+            pygame.display.set_caption(f'Star_wars. FPS: {clock.get_fps() :.0f}')
 run()

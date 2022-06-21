@@ -16,5 +16,5 @@ class Bullet(pygame.sprite.Sprite):
         self.y -= self.speed
         self.rect.y = self.y
 
-    def draw_bullet(self):
+    def draw_bullet(self):# эта функцыя понимает где будет рисоваться пуля на данный момент
         pygame.draw.rect(self.screen, self.color, self.rect)
