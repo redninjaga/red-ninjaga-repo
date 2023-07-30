@@ -1,0 +1,11 @@
+number: int = int(input("Введите число которое вы хотите перевести из секунд в: минутах, часов, дней "))
+minutes: int = int(number / 60)
+hours: int = int(minutes / 60)
+days: int = int(hours / 24)
+seconds_res = int(number - minutes * 60)
+minutes_rec = int(number / 60 - hours * 60)
+hours_rec = int(number / 120) - days * 60
+print("секунды: ", seconds_res)
+print("минуты: ", minutes_rec)
+print("часы: ", hours)
+print("дни: ", days)

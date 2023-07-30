@@ -6,7 +6,6 @@ cpu_score = 0
 player_score = 0
 while True:
     player = input("Rock, Paper or  Scissors?").capitalize()
-    # 判断游戏者和电脑的选择
     if player == computer:
         print("Tie!")
     elif player == "Rock":

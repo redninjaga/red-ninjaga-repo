@@ -11,30 +11,33 @@ x = 50
 y = 50
 speed = 5
 
-# class Player(pygame.sprite.Sprite):
-#     def __init__(self):
-#         super.__init__()
-#         self.image = pygame.image.load("draw/space.jpg")
-#
-#         self.change_x = 0
-#         self.change_y = 0
-#
-#         self.level = None
-#
-#     def update(self):
-#         self.calc_gravity()
-#
-#         self.rect.x += self.change_x
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        super.__init__()
+        self.image = pygame.image.load("draw/Redninjaga.png")
+        self.rect = self.image.get_rect()
 
-# class Level(object):
-#     def __init__(self):
-#         self.platforms = pygame.sprite.Group()
-#         self.player = player
-#
-#         self.background = None
-#
-#     def update(self, screen):
-#         screen.blit(bg)
+        self.change_x = 0
+        self.change_y = 0
+
+        self.level = None
+
+    def update(self):
+        self.calc_gravity()
+
+        self.rect.x += self.change_x
+
+class Level(object):
+    def __init__(self):
+        self.platforms = pygame.sprite.Group()
+        self.player = player
+
+        self.background = None
+
+    def update(self, screen):
+        screen.blit(bg, (0, 0))
+
+        self.platforms.draw()
 
 clock = pygame.time.Clock()
 run = True
