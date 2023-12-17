@@ -28,8 +28,8 @@ while True:
             cpu_score+=1
         else:
             print("You win!", player, "cut", computer)
-            player_score+=1
-    elif player=='E':
+            player_score += 1
+    elif player == 'E':
         print("Final Scores:")
         print(f"CPU:{cpu_score}")
         print(f"Plaer:{player_score}")
