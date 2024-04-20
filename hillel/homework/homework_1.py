@@ -17,4 +17,4 @@ print("Градусів Цельсія:", celsius)
 # 3
 sum = int(input("Введіть суму покупки:\n"))
 cashback = float(sum * (7 / 100))
-print(round(cashback, 2), "$")
+print("Ваш кешбек:", round(cashback, 2), "$")
