@@ -40,8 +40,8 @@ def show_window_level():
     back_button = pygame.draw.rect(screen, WHITE, back_rect)
     draw_text(screen, "back", GREY, 30, back_button.centerx, back_button.centery - 20)
 
-    draw_text(screen, str(money), "gold", 35, 0, 0)
-    screen.blit(money_image, 0, 0)
+    screen.blit(money_image, (10, 562))
+    draw_text(screen, str(money), "gold", 35, 60 + (money + 1) / 100, 555)
 
     pygame.display.flip()
     wait = True
@@ -83,7 +83,9 @@ def click_shop():
         screen.blit(player_img_aqua, (width / 2 - (player_img_aqua.get_width()) / 2, height - 200))
         screen.blit(player_img_brown, (width - 120, height - 200))
         screen.blit(player_img_grey, (width - 480, height - 200))
+
         screen.blit(money_image, (width - 100, height - 595))
+        draw_text(screen, str(money), "gold", 35, 450, 0)
 
         pygame.display.flip()
 
@@ -153,7 +155,7 @@ def starting_window():
 star_second = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
 def stars_time(get_time, arr, level):
     global money
-    money = money + 20
+    money = money + 500
     if get_time <= star_second[level_now - 1]:
         for x in range(3):
             levels[level_now - 1].stars[x].unlocked = True
