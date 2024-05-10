@@ -71,7 +71,7 @@ def click_shop():
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
                 pygame.quit()
-        back_rect = pygame.Rect(420, 550, 70, 40)
+        back_rect = pygame.Rect(420, 560, 70, 40)
         back_button = pygame.draw.rect(screen, WHITE, back_rect)
         draw_text(screen, "back", GREY, 30, back_button.centerx, back_button.centery - 20)
         x, y = pygame.mouse.get_pos()
@@ -83,6 +83,27 @@ def click_shop():
         screen.blit(player_img_aqua, (width / 2 - (player_img_aqua.get_width()) / 2, height - 200))
         screen.blit(player_img_brown, (width - 120, height - 200))
         screen.blit(player_img_grey, (width - 480, height - 200))
+
+        draw_text(screen, "100", WHITE, 35, (width / 2), (height - 125))
+        draw_text(screen, "100", WHITE, 35, (width - 72), (height - 125))
+        draw_text(screen, "100", WHITE, 35, (width - 432), (height - 125))
+
+        aqua_buy_rect = pygame.Rect(width / 2 - 50, height - 80, 100, 30)
+        aqua_button = pygame.draw.rect(screen, WHITE, aqua_buy_rect)
+        draw_text(screen, "buy", "gold", 30, aqua_button.centerx, aqua_button.centery - 20)
+
+        grey_buy_rect = pygame.Rect(width - 480, height - 80, 100, 30)
+        grey_button = pygame.draw.rect(screen, WHITE, grey_buy_rect)
+        draw_text(screen, "buy", "gold", 30, grey_button.centerx, grey_button.centery - 20)
+
+        brown_buy_rect = pygame.Rect(width - 120, height - 80, 100, 30)
+        brown_button = pygame.draw.rect(screen, WHITE, brown_buy_rect)
+        draw_text(screen, "buy", "gold", 30, brown_button.centerx, brown_button.centery - 20)
+
+        x, y = pygame.mouse.get_pos()
+        if pygame.mouse.get_pressed()[0]:
+            if aqua_buy_rect.collidepoint((x, y)):
+                print("buy")
 
         screen.blit(money_image, (width - 100, height - 595))
         draw_text(screen, str(money), "gold", 35, 450, 0)
