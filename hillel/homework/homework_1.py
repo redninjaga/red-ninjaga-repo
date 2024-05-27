@@ -9,12 +9,20 @@
 # print("Поміститься", fit, "файлів.")
 # print("Залишиться", remain, "Гб.")
 
-# 2
-fahrenheit = int(input("Введіть градуси за Фаренгейтом:\n"))
-celsius = int((fahrenheit - 32) * 5 / 9)
-print("Градусів Цельсія:", celsius)
+# # 2
+# fahrenheit = int(input("Введіть градуси за Фаренгейтом:\n"))
+# celsius = int((fahrenheit - 32) * 5 / 9)
+# print("Градусів Цельсія:", celsius)
 
 # # 3
 # sum = int(input("Введіть суму покупки:\n"))
 # cashback = float(sum * (7 / 100))
 # print("Ваш кешбек:", round(cashback, 2), "$")
+
+letters = list("Hello")
+for letter in letters:
+    if letters.count(letter) > 1:
+        print(letter)
+        break
+
+
