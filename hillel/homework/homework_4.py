@@ -1,4 +1,5 @@
 # Author: Maksym Derevianko
+
 # 1
 print("---Task 1---")
 print("Программа перевіряє, чи ділиться введене число на 7.")
@@ -26,7 +27,7 @@ input_2 = input("Введіть слово: ")
 lower_input_2 = input_2.lower()
 reversed_input_2 = lower_input_2[::-1]
 
-if input_2 == reversed_input_2:
+if lower_input_2 == reversed_input_2:
     print(f"'{input_2}' це паліндром")
 else:
     print(f"'{input_2}' це не паліндром")

@@ -19,10 +19,6 @@
 # cashback = float(sum * (7 / 100))
 # print("Ваш кешбек:", round(cashback, 2), "$")
 
-letters = list("Hello")
-for letter in letters:
-    if letters.count(letter) > 1:
-        print(letter)
-        break
+
 
 
