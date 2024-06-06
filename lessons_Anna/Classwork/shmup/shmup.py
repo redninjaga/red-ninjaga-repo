@@ -29,12 +29,15 @@ fond = pygame.font.match_font("Arial")
 def level_create(width_screen, width_level, distance_level, height_screen, height_level, score):
     global levels
     global lvl_score
+    global star_second
+    star_second = []
     lvl_score = []
     levels = []
     number = 1
     count_x = width_screen // (width_level + distance_level)
     count_y = height_screen // (height_level + distance_level * 2)
     x, y = 10, 10
+    second = 10
 
     for i in range(count_y-1):
         for j in range(count_x):
@@ -43,6 +46,8 @@ def level_create(width_screen, width_level, distance_level, height_screen, heigh
             number += 1
             levels.append(l)
             lvl_score.append(score)
+            star_second.append(second)
+            second += 5
             score += 50
         x = 10
         y += height_level + (distance_level * 2)
@@ -54,19 +59,19 @@ def minuse_money(planes, money):
     for plane in planes:
         cost = plane.check_click(mouse_pos, mouse_click)
         if cost > 0:
+            plane.click = True
             money -= cost
             return money
     return money
+
 
 def show_window_level():
     global level_now
     global level_select
     screen.fill(BLACK)
-    level_create(width, 40, 10, height, 50, 100)
+
     for level in levels:
         level.draw(screen)
-
-    print(levels, "levels")
 
     back_rect = pygame.Rect(420, 550, 70, 40)
     back_button = pygame.draw.rect(screen, WHITE, back_rect)
@@ -95,6 +100,7 @@ def show_window_level():
                 wait = False
                 run_main(True)
 
+
 def click_shop():
     global money
     screen.fill(BLACK)
@@ -109,9 +115,13 @@ def click_shop():
         draw_text(screen, "back", GREY, 30, back_button.centerx, back_button.centery - 20)
         x, y = pygame.mouse.get_pos()
         planes = [
-        Plane(screen, player_img_aqua, width / 2 - (player_img_aqua.get_width()) / 2, height - 200, 100, money),
-        Plane(screen, player_img_brown, width - 120, height - 200, 150, money),
-        Plane(screen, player_img_grey, width - 480, height - 200, 120, money)]
+            Plane(screen, player_img_aqua, width / 2 - (player_img_aqua.get_width()) / 2, height - 200, 100, money),
+            Plane(screen, player_img_brown, width - 120, height - 200, 150, money),
+            Plane(screen, player_img_grey, width - 480, height - 200, 120, money)
+            ]
+        for plane in planes:
+            plane.draw_btn()
+
         if back_rect.collidepoint((x, y)):
             if pygame.mouse.get_pressed()[0]:
                 wait = False
@@ -132,6 +142,7 @@ shop_button = pygame.draw.rect(screen, RED, shop_rect)
 
 draw_text(screen, "play", GREEN, 40, play_button.centerx, play_button.centery - 30)
 draw_text(screen, "shop", BLUE, 40, shop_button.centerx, shop_button.centery - 25)
+
 
 def run_main(running):
     screen.fill(BLACK)
@@ -179,11 +190,12 @@ def starting_window():
             if event.type == pygame.KEYDOWN:
                 running = False
 
-star_second = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+
 def stars_time(get_time, arr, level):
     global money
     money = money + 500
     if get_time <= star_second[level_now - 1]:
+        print("3 stars")
         for x in range(3):
             levels[level_now - 1].stars[x].unlocked = True
             levels[level_now - 1].stars[x].update()
@@ -328,6 +340,7 @@ points = [100, 120, 150]
 money = 0
 while run:
     if game_over:
+        level_create(width, 40, 10, height, 50, 100)
         run_main(True)
         if level_select:
             global start_time
@@ -342,6 +355,7 @@ while run:
             for i in range(10):
                 new_mob()
     if score >= lvl_score[level_now - 1]:
+
         end_time = time.time()
         all_time = end_time - start_time
         stars_time(all_time, star_second, level_now)
