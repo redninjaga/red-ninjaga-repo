@@ -1,7 +1,5 @@
 # Author: Maksim Derevianko
 
-import os
-
 path_file = 'files/romeo.txt'
 
 with open(path_file, mode='r') as file:
