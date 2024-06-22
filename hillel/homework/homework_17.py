@@ -13,9 +13,8 @@ def sieve(numbers):
 print(sieve([11, 12, 39, 12, 3, 11]))
 print(sieve([1, 5, 2, 3, 7, 4, 5, 6, 7]))
 
+
 # 2
-
-
 def check_number(num: int) -> bool:
     str_num = str(num)
     num_length = len(str_num)
