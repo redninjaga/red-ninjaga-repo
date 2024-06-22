@@ -14,6 +14,8 @@ clock = pygame.time.Clock()
 #dddddddddddddddddaa da dwdddddddddddddddddddddddddda
 
 # Создание уровней
+global money
+money = 0
 money_image = pygame.image.load(path.join(game_sprites, "money_2.png"))
 player_img_aqua = pygame.image.load(path.join(game_sprites, "player_img_aqua.png"))
 player_img_brown = pygame.image.load(path.join(game_sprites, "player_img_brown.png"))
@@ -25,6 +27,25 @@ height_rect_1 = 50
 width_rect_2 = 222
 height_rect_2 = 50
 fond = pygame.font.match_font("Arial")
+planes = [
+    Plane(screen, player_img_aqua, width / 2 - (player_img_aqua.get_width()) / 2, height - 200, 100, money),
+    Plane(screen, player_img_brown, width - 120, height - 200, 150, money),
+    Plane(screen, player_img_grey, width - 480, height - 200, 120, money)
+]
+
+
+def check_boss(mobs):
+    if level_now % 5 == 0:
+        for mob in mobs:
+            mob.speed_y = random.randrange(40, 50)
+        return True
+    else:
+        for mob in mobs:
+            mob.speed_y = random.randrange(1, 10)
+        return False
+        #print("radius", mob.radius)
+
+
 
 def level_create(width_screen, width_level, distance_level, height_screen, height_level, score):
     global levels
@@ -53,15 +74,19 @@ def level_create(width_screen, width_level, distance_level, height_screen, heigh
         y += height_level + (distance_level * 2)
     levels[0].unlocked = True  # Первый уровень изначально открыт
 
+
 def minuse_money(planes, money):
     mouse_pos = pygame.mouse.get_pos()
     mouse_click = pygame.mouse.get_pressed()
+    temp = money
     for plane in planes:
-        cost = plane.check_click(mouse_pos, mouse_click)
-        if cost > 0:
-            plane.click = True
-            money -= cost
-            return money
+        if plane.draw_btn() == 0:
+            cost = plane.check_click(mouse_pos, mouse_click, money)
+            if cost > 0 and money > temp - cost:
+                print("Cost:", cost, "money", money, "temp - cost =", temp - cost)
+                plane.click = False
+                money -= cost
+                return money
     return money
 
 
@@ -105,6 +130,7 @@ def click_shop():
     global money
     screen.fill(BLACK)
     wait = True
+
     while wait:
         clock.tick(200)
         for ev in pygame.event.get():
@@ -114,20 +140,25 @@ def click_shop():
         back_button = pygame.draw.rect(screen, WHITE, back_rect)
         draw_text(screen, "back", GREY, 30, back_button.centerx, back_button.centery - 20)
         x, y = pygame.mouse.get_pos()
-        planes = [
-            Plane(screen, player_img_aqua, width / 2 - (player_img_aqua.get_width()) / 2, height - 200, 100, money),
-            Plane(screen, player_img_brown, width - 120, height - 200, 150, money),
-            Plane(screen, player_img_grey, width - 480, height - 200, 120, money)
-            ]
+
         for plane in planes:
             plane.draw_btn()
+            plane.update()
+            if plane.plane_rect.collidepoint((x, y)):
+                if pygame.mouse.get_pressed()[0] and plane.click and plane.click_money < 1:
+                    plane.draw_btn()
+                    money = minuse_money(planes, money)
+                    buy_rect = pygame.Rect(plane.plane_rect.x, plane.plane_rect.y, 100, 30)
+                    buy_button = pygame.draw.rect(screen, BLACK, buy_rect)
+                    pygame.display.update()
 
         if back_rect.collidepoint((x, y)):
             if pygame.mouse.get_pressed()[0]:
                 wait = False
                 run_main(True)
 
-        money = minuse_money(planes, money)
+        money_rect = pygame.Rect(width - 100, height - 595, 70, 40)
+        money_button = pygame.draw.rect(screen, BLACK, money_rect)
 
         screen.blit(money_image, (width - 100, height - 595))
         draw_text(screen, str(money), "gold", 35, 450, 0)
@@ -350,6 +381,7 @@ while run:
             all_sprites = pygame.sprite.Group()
             player = Player()
             mobs = pygame.sprite.Group()
+            check_boss(mobs)
             bullets = pygame.sprite.Group()
             all_sprites.add(player)
             for i in range(10):
@@ -388,7 +420,7 @@ while run:
             all_sprites.add(hilka)
             group_health.add(hilka)
         all_sprites.add(anim_boom)
-        score += p.radius / 4
+        score += p.radius * 10
 
     push = pygame.sprite.spritecollide(player, mobs, False)
     for pushs in push:
@@ -411,7 +443,10 @@ while run:
     screen.blit(background, background_rect)
 
     health_bar(screen, 5, 5, player.helth)
-    draw_text(screen, str(score), RED, 35, width - 30, 0)
+    if check_boss(mobs):
+        draw_text(screen, str(score), BLUE, 35, width - 30, 0)
+    else:
+        draw_text(screen, str(score), RED, 35, width - 30, 0)
     money_txt = draw_text(screen, str(money), "gold", 35, width - 40, height - 40)
     screen.blit(money_image, ((width - 60)-money_txt, height - 32))
 
