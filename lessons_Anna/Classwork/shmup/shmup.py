@@ -150,7 +150,13 @@ def click_shop():
                     money = minuse_money(planes, money)
                     buy_rect = pygame.Rect(plane.plane_rect.x, plane.plane_rect.y, 100, 30)
                     buy_button = pygame.draw.rect(screen, BLACK, buy_rect)
+                    price_rect = pygame.Rect(plane.plane_rect.x, plane.plane_rect.y - 40, 100, 30)
+                    price_button = pygame.draw.rect(screen, BLACK, price_rect)
                     pygame.display.update()
+            elif plane.rect.collidepoint((x, y)):
+                print(plane.price)
+                if pygame.mouse.get_pressed()[0] and plane.click_money == 1:
+                    print(plane.price)
 
         if back_rect.collidepoint((x, y)):
             if pygame.mouse.get_pressed()[0]:
@@ -224,7 +230,7 @@ def starting_window():
 
 def stars_time(get_time, arr, level):
     global money
-    money = money + 500
+    money = money + 20
     if get_time <= star_second[level_now - 1]:
         print("3 stars")
         for x in range(3):
@@ -420,7 +426,7 @@ while run:
             all_sprites.add(hilka)
             group_health.add(hilka)
         all_sprites.add(anim_boom)
-        score += p.radius * 10
+        score += p.radius * 8
 
     push = pygame.sprite.spritecollide(player, mobs, False)
     for pushs in push:

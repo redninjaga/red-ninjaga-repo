@@ -31,8 +31,8 @@ for x in solar_system:
     t.dot(solar_system[x], str(solar_system_colors[i]))
 
     # Saturn circles
-    if (x == 'Saturn'):
-        t.goto(t.xcor(), t.ycor()-55)
+    if x == 'Saturn':
+        t.goto(t.xcor(), t.ycor() - 55)
         t.down()
         t.pensize(8)
         t.pencolor('#545559')

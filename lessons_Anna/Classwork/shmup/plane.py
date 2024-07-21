@@ -27,6 +27,7 @@ class Plane(pygame.sprite.Sprite):
 
     def draw_btn(self):
         if self.click:
+            draw_text(screen, f"{self.price}", WHITE, 35, self.x+45, (height - 125))
             self.plane_button = pygame.draw.rect(screen, WHITE, self.plane_rect)
             draw_text(screen, "buy", "gold", 30, self.plane_button.centerx, self.plane_button.centery - 20)
             return 0
@@ -34,6 +35,4 @@ class Plane(pygame.sprite.Sprite):
 
     def update(self):
         screen.blit(self.image, (self.x, self.y))
-        draw_text(screen, f"{self.price}", WHITE, 35, self.x+45, (height - 125))
-
 
