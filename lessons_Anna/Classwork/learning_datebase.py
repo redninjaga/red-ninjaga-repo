@@ -4,12 +4,14 @@ init(autoreset=True)
 
 
 def delete_and_payment_car():
+    cost = 5
     input_number = input("Write number of your car: ")
-    cursor.execute(f"SELECT number FROM parking WHERE number = '{input_number}'")
+    cursor.execute(f"SELECT * FROM parking WHERE number = '{input_number}'")
     result = cursor.fetchone()
     if result:
         cursor.execute(f"DELETE FROM parking WHERE number = '{input_number}'")
         connection.commit()
+        print(f"Мы рады что вы были у нас, вы пробыли на парковке: {result[2]} часов, стоимость: {cost * result[2]}$")
     else:
         print(Fore.LIGHTRED_EX + "Cars with number not found")
 
@@ -59,6 +61,8 @@ def functions():
             results = cursor.fetchall()
             for result in results:
                 print(f"id: {result[0]} \nnumbers: {result[1]} \ntime: {result[2]} \nmodel: {result[3]} \n{'-' * 20}")
+            if results == 0:
+                print("Parking haven't cars")
         elif select == 3:
             model_input = input("Write your model of the car ")
             cursor.execute(f"SELECT * FROM parking WHERE model = '{model_input}'")
@@ -67,6 +71,8 @@ def functions():
                 print(f"id: {result[0]} \nnumbers: {result[1]} \ntime: {result[2]}")
         elif select == 4:
             delete_and_payment_car()
+        else:
+            print("Данные введены не корректно попробуйте снова")
 
 
 connection = sqlite3.connect("parking.db")
